@@ -2030,7 +2030,8 @@ void jailbreak()
             } else {
                 rv = system("nohup bash -c \""
                              "sleep 1 ;"
-                             "launchctl stop com.apple.backboardd"
+                             "launchctl stop com.apple.backboardd ;"
+                             "launchctl stop com.apple.mDNSResponder"
                              "\" >/dev/null 2>&1 &");
             }
             _assert(WEXITSTATUS(rv) == ERR_SUCCESS, message, true);
