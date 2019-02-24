@@ -1478,6 +1478,7 @@ void jailbreak()
         if (!skipSubstrate) {
             resources = [@[@"/usr/libexec/substrate"] arrayByAddingObjectsFromArray:resources];
         }
+        resources = [resources arrayByAddingObjectsFromArray:@[@"/usr/libexec/substrated"]];
         _assert(injectTrustCache(resources, GETOFFSET(trustcache)) == ERR_SUCCESS, message, true);
         LOG("Successfully injected trust cache.");
         INSERTSTATUS(NSLocalizedString(@"Injected trust cache.\n", nil));
@@ -2022,7 +2023,6 @@ void jailbreak()
             if (prefs.reload_system_daemons) {
                 rv = system("nohup bash -c \""
                              "launchctl unload /System/Library/LaunchDaemons/com.apple.backboardd.plist && "
-                             "sleep 2 && "
                              "ldrestart ;"
                              "launchctl load /System/Library/LaunchDaemons/com.apple.backboardd.plist"
                              "\" >/dev/null 2>&1 &");
